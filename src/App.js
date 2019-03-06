@@ -27,15 +27,46 @@ class App extends React.Component {
           id: 1528817084358,
           completed: false
         }
-      ]
+      ] ,
+
+      todo: ''
       
     }
   }
+
+  addTask = event => {
+    event.preventDefault();
+    let newTodo = {
+      task: this.state.todo ,
+      id: Date.now(),
+      completed: false
+    }
+
+    this.setState({
+      todos: [...this.state.todos, newTodo] ,
+      todo: ''
+    })
+  }
+
+  toggleCompleted = event => {
+
+  }
+
+  removeSelected = event => {
+
+  }
+
+  inputChangeHandler = event => {
+    this.setState({ [event.target.name]: event.target.value});
+  };
+
   render() {
     return (
       <div>
        <TodoList todos={this.state.todos}/>
-       <TodoForm />
+       <TodoForm addTask={this.addTask} 
+       todos={this.state.todos} inputChangeHandler={this.inputChangeHandler}
+       valueThing={this.state.todo}/>
       
       </div>
     );
