@@ -52,7 +52,24 @@ class App extends React.Component {
   };
 
   toggleItem = itemId => {
-    this.setState(prevState => {
+    
+    let todos = this.state.todos.map( todoItem => {
+      if (todoItem.id === itemId) {
+        todoItem.completed = !todoItem.completed;
+
+        
+      }
+
+      return todoItem;
+    })
+    
+
+    this.setState({
+      todos,
+      todo: ""
+    })
+    
+    {/* this.setState(prevState => {
       return {
         todos: prevState.todos.map(todoItem => {
           if (todoItem.id === itemId) {
@@ -66,7 +83,7 @@ class App extends React.Component {
           }
         })
       };
-    });
+    }); */}
   };
 
   clearCompleted = () => {
